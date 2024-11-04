@@ -152,7 +152,6 @@ class RulerARProViewController: UIViewController {
                         reset: UIButton(size: CGSize(width: 50, height: 50), image: Image.Menu.reset),
                         setting: UIButton(size: CGSize(width: 50, height: 50), image: Image.Menu.setting),
                         more: UIButton(size: CGSize(width: 60, height: 60), image: Image.More.close))
-    
    
     
     override func viewDidLoad() {
@@ -215,8 +214,6 @@ class RulerARProViewController: UIViewController {
             view.addSubview(resultLabel)
             view.addSubview(copy)
 
-            
-            
         }
         
         do {
@@ -239,9 +236,9 @@ class RulerARProViewController: UIViewController {
         }
         do {
             view.addSubview(menuButtonSet)
-            menuButton.more.addTarget(self, action: #selector(RulerARProViewController.showMenuAction(_:)), for: .touchUpInside)
+//            menuButton.more.addTarget(self, action: #selector(RulerARProViewController.showMenuAction(_:)), for: .touchUpInside)
             menuButton.setting.addTarget(self, action: #selector(RulerARProViewController.moreAction(_:)), for: .touchUpInside)
-            menuButton.reset.addTarget(self, action: #selector(RulerARProViewController.restartAction(_:)), for: .touchUpInside)
+         menuButton.reset.addTarget(self, action: #selector(RulerARProViewController.restartAction(_:)), for: .touchUpInside)
             menuButton.measurement.addTarget(self, action: #selector(RulerARProViewController.changeMeasureMode(_:)), for: .touchUpInside)
             menuButton.save.addTarget(self, action: #selector(RulerARProViewController.saveImage(_:)), for: .touchUpInside)
             menuButtonSet.frame = CGRect(x: (width - 40 - 60), y: placeButton.frame.origin.y + 10, width: 60, height: 60)
@@ -275,7 +272,6 @@ class RulerARProViewController: UIViewController {
 
 // MARK: - Target Action
 @objc private extension RulerARProViewController {
-    // 保存测量结果
     func saveImage(_ sender: UIButton) {
         func saveImage(image: UIImage) {
             PHPhotoLibrary.shared().performChanges({
@@ -306,7 +302,6 @@ class RulerARProViewController: UIViewController {
     }
     
     
-    // 放置测量点
     func placeAction(_ sender: UIButton) {
         UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.allowUserInteraction,.curveEaseOut], animations: {
             sender.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
@@ -342,7 +337,7 @@ class RulerARProViewController: UIViewController {
     
     // 重置视图
     func restartAction(_ sender: UIButton) {
-        showMenuAction(sender)
+        //   showMenuAction(sender)
         line?.removeFromParent()
         line = nil
         for node in lines {
@@ -398,21 +393,21 @@ class RulerARProViewController: UIViewController {
         guard let vc = UIStoryboard(name: "SettingViewController", bundle: nil).instantiateInitialViewController() else {
             return
         }
-        showMenuAction(sender)
+       // showMenuAction(sender)
         present(vc, animated: true, completion: nil)
     }
     
     
     // 显示菜单
-    func showMenuAction(_ sender: UIButton) {
-        if menuButtonSet.isOn {
-            menuButtonSet.dismiss()
-            menuButton.more.normalImage = Image.More.close
-        } else {
-            menuButtonSet.show()
-            menuButton.more.normalImage = Image.More.open
-        }
-    }
+//    func showMenuAction(_ sender: UIButton) {
+//        if menuButtonSet.isOn {
+//            menuButtonSet.dismiss()
+//            menuButton.more.normalImage = Image.More.close
+//        } else {
+//            menuButtonSet.show()
+//            menuButton.more.normalImage = Image.More.open
+//        }
+//    }
     
     // 完成面积测量
     func finishAreaAction(_ sender: UIButton) {
@@ -449,7 +444,7 @@ class RulerARProViewController: UIViewController {
     
     
     func changeMeasureMode(_ sender: UIButton) {
-        showMenuAction(sender)
+     //   showMenuAction(sender)
         lineSet = nil
         line = nil
         switch mode {
