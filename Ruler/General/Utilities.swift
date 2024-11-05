@@ -2,7 +2,7 @@
 //  Utilities.swift
 //  Ruler
 //
-//  Created by Tbxark on 18/09/2017.
+//  Created by Moon Dev on 18/09/2017.
 //  Copyright © 2017 Tbxark. All rights reserved.
 //
 
@@ -10,10 +10,7 @@ import Foundation
 import SceneKit
 import ARKit
 
-/// 根据点云拟合平面
-/// - Parameters:
-///   - featureCloud： 点云
-/// - Returns: 平面法向量及平面上一点
+
 func planeDetectWithFeatureCloud(featureCloud: [SCNVector3]) -> (detectPlane: SCNVector3, planePoint: SCNVector3) {
     let warpFeatures = featureCloud.map({ (feature) -> NSValue in
         return NSValue(scnVector3: feature)
@@ -31,13 +28,6 @@ func planeDetectWithFeatureCloud(featureCloud: [SCNVector3]) -> (detectPlane: SC
     return (detectPlane, planePoint)
 }
 
-/// 根据直线上的点和向量及平面上的点和法向量计算交点
-/// - Parameters:
-///   - planeVector: 平面法向量
-///   - planePoint: 平面上一点
-///   - lineVector: 直线向量
-///   - linePoint: 直线上一点
-/// - Returns: 交点
 func planeLineIntersectPoint(planeVector: SCNVector3 , planePoint: SCNVector3, lineVector: SCNVector3, linePoint: SCNVector3) -> SCNVector3? {
     let vpt = planeVector.x * lineVector.x + planeVector.y * lineVector.y + planeVector.z * lineVector.z
     if vpt != 0 {
@@ -51,10 +41,6 @@ func planeLineIntersectPoint(planeVector: SCNVector3 , planePoint: SCNVector3, l
 }
 
 
-// 点云拟合多边形求面积
-/// - Parameters:
-///   - points: 顶点坐标
-/// - Returns: 面积
 func area3DPolygonFormPointCloud(points: [SCNVector3]) -> Float32 {
     let (detectPlane, planePoint) = planeDetectWithFeatureCloud(featureCloud: points)
     var newPoints = [SCNVector3]()
@@ -67,11 +53,7 @@ func area3DPolygonFormPointCloud(points: [SCNVector3]) -> Float32 {
     return area3DPolygon(points: newPoints, plane: detectPlane)
 }
 
-// 空间多边形面积
-/// - Parameters:
-///   - points: 顶点坐标
-///   - plane: 多边形所在平面法向量
-/// - Returns: 面积
+
 func area3DPolygon(points: [SCNVector3], plane: SCNVector3 ) -> Float32 {
     let n = points.count
     guard n >= 3 else { return 0 }

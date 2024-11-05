@@ -18,16 +18,16 @@ class LineNode: NSObject {
     let textNode: SCNNode
     let sceneView: ARSCNView?
     private var recentFocusSquarePositions = [SCNVector3]()
-
+    
     init(startPos: SCNVector3,
          sceneV: ARSCNView,
-         color: (start: UIColor, end: UIColor) = (UIColor.green, UIColor.red),
+         color: (start: UIColor, end: UIColor) = (UIColor.white, UIColor.white),
          font: UIFont = UIFont.boldSystemFont(ofSize: 10) ) {
         sceneView = sceneV
         
         let scale = 1/400.0
         let scaleVector = SCNVector3(scale, scale, scale)
-
+        
         func buildSCNSphere(color: UIColor) -> SCNSphere {
             let dot = SCNSphere(radius:1)
             dot.firstMaterial?.diffuse.contents = color
@@ -35,7 +35,7 @@ class LineNode: NSObject {
             dot.firstMaterial?.isDoubleSided = true
             return dot
         }
-   
+        
         
         startNode = SCNNode(geometry: buildSCNSphere(color: color.start))
         startNode.scale = scaleVector
@@ -67,7 +67,9 @@ class LineNode: NSObject {
         removeFromParent()
     }
     
-    public func updatePosition(pos: SCNVector3, camera: ARCamera?, unit: MeasurementUnit.Unit = MeasurementUnit.Unit.centimeter) -> Float {
+    public func updatePosition(pos: SCNVector3,
+                               camera: ARCamera?,
+                               unit: MeasurementUnit.Unit = MeasurementUnit.Unit.inch) -> Float {
         let posEnd = updateTransform(for: pos, camera: camera)
         
         if endNode.parent == nil {
@@ -100,11 +102,9 @@ class LineNode: NSObject {
         lineNode?.removeFromParentNode()
         textNode.removeFromParentNode()
     }
-    
-    // MARK: - Private
-    
-    private func lineBetweenNodeA(nodeA: SCNNode, nodeB: SCNNode) -> SCNNode {
-        
+
+    private func lineBetweenNodeA(nodeA: SCNNode,
+                                  nodeB: SCNNode) -> SCNNode {
         return CylinderLine(parent: sceneView!.scene.rootNode,
                             v1: nodeA.position,
                             v2: nodeB.position,
@@ -114,8 +114,8 @@ class LineNode: NSObject {
         
     }
     
-    
-    private func updateTransform(for position: SCNVector3, camera: ARCamera?) -> SCNVector3 {
+    private func updateTransform(for position: SCNVector3,
+                                 camera: ARCamera?) -> SCNVector3 {
         recentFocusSquarePositions.append(position)
         recentFocusSquarePositions.keepLast(8)
         if let camera = camera {
@@ -126,14 +126,14 @@ class LineNode: NSObject {
             var angle: Float = 0
             
             switch tilt {
-            case 0..<threshold1:
-                angle = camera.eulerAngles.y
-            case threshold1..<threshold2:
-                let relativeInRange = abs((tilt - threshold1) / (threshold2 - threshold1))
-                let normalizedY = normalize(camera.eulerAngles.y, forMinimalRotationTo: yaw)
-                angle = normalizedY * (1 - relativeInRange) + yaw * relativeInRange
-            default:
-                angle = yaw
+                case 0..<threshold1:
+                    angle = camera.eulerAngles.y
+                case threshold1..<threshold2:
+                    let relativeInRange = abs((tilt - threshold1) / (threshold2 - threshold1))
+                    let normalizedY = normalize(camera.eulerAngles.y, forMinimalRotationTo: yaw)
+                    angle = normalizedY * (1 - relativeInRange) + yaw * relativeInRange
+                default:
+                    angle = yaw
             }
             textNode.runAction(SCNAction.rotateTo(x: 0, y: CGFloat(angle), z: 0, duration: 0))
         }
@@ -146,7 +146,7 @@ class LineNode: NSObject {
     }
     
     private func normalize(_ angle: Float, forMinimalRotationTo ref: Float) -> Float {
-
+        
         var normalized = angle
         while abs(normalized - ref) > Float.pi / 4 {
             if angle > ref {

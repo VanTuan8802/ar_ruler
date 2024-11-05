@@ -2,7 +2,7 @@
 //  CoreGraphics+Extension.swift
 //  Ruler
 //
-//  Created by Tbxark on 25/09/2017.
+//  Created by Moon Dev on 25/09/2017.
 //  Copyright © 2017 Tbxark. All rights reserved.
 //
 
@@ -42,11 +42,13 @@ extension RangeReplaceableCollection where IndexDistance == Int {
 extension CGPoint {
     
     init(_ size: CGSize) {
+        self.init()
         self.x = size.width
         self.y = size.height
     }
     
     init(_ vector: SCNVector3) {
+        self.init()
         self.x = CGFloat(vector.x)
         self.y = CGFloat(vector.y)
     }

@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RulerViewController" customModule="Ruler" customModuleProvider="target">
             <connections>
-                <outlet property="cameraView" destination="OfD-TA-GUS" id="PCS-Fm-X0g"/>
+                <outlet property="cameraView" destination="0iu-ki-IgB" id="jUH-3P-8hm"/>
                 <outlet property="clearLb" destination="KXh-UM-yFj" id="ydH-ZV-ATb"/>
                 <outlet property="clearView" destination="1eZ-ge-kS3" id="Een-LP-6pK"/>
                 <outlet property="moreOnBtn" destination="KNT-aA-45C" id="hxK-dr-1tf"/>
@@ -24,9 +24,9 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-TA-GUS">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iu-ki-IgB">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1eZ-ge-kS3">
                     <rect key="frame" x="303.66666666666669" y="75" width="73.333333333333314" height="36"/>
@@ -69,6 +69,9 @@
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="ic_add"/>
+                                    <connections>
+                                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="jK5-TP-gmX"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,6 +84,9 @@
                             <rect key="frame" x="285" y="0.0" width="44" height="80"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="ic_cam"/>
+                            <connections>
+                                <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="lBy-kg-XBO"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
@@ -118,7 +124,7 @@
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="more_off"/>
                             <connections>
-                                <action selector="moreAction:" destination="-1" eventType="touchUpInside" id="n7G-wa-MSz"/>
+                                <action selector="moreAction:" destination="-1" eventType="touchUpInside" id="qoH-bN-rnH"/>
                             </connections>
                         </button>
                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iy4-Zb-WC0">
@@ -172,20 +178,20 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OfD-TA-GUS" secondAttribute="trailing" id="3cH-hG-qCn"/>
                 <constraint firstItem="hZk-QK-jIY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="3md-tb-D0y"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GTF-WH-Xve" secondAttribute="trailing" constant="16" id="A4x-iB-wtl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="q57-w5-DJR" secondAttribute="bottom" constant="80" id="GDO-xH-JlI"/>
+                <constraint firstItem="0iu-ki-IgB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PAo-IO-QbR"/>
                 <constraint firstItem="q57-w5-DJR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="Wut-09-8tx"/>
                 <constraint firstItem="GTF-WH-Xve" firstAttribute="top" secondItem="6D9-eQ-WCJ" secondAttribute="bottom" constant="16" id="bP3-uS-J39"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6D9-eQ-WCJ" secondAttribute="trailing" constant="16" id="d0r-8g-ECo"/>
                 <constraint firstItem="6D9-eQ-WCJ" firstAttribute="top" secondItem="1eZ-ge-kS3" secondAttribute="bottom" constant="16" id="ieE-dB-ijp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0iu-ki-IgB" secondAttribute="trailing" id="l8P-YJ-lGv"/>
                 <constraint firstItem="hZk-QK-jIY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="lFU-EN-EYS"/>
+                <constraint firstAttribute="bottom" secondItem="0iu-ki-IgB" secondAttribute="bottom" id="npt-rc-gXT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1eZ-ge-kS3" secondAttribute="trailing" constant="16" id="o5Y-CI-P5x"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OfD-TA-GUS" secondAttribute="bottom" id="of4-eR-tbK"/>
                 <constraint firstItem="1eZ-ge-kS3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="pmL-En-gZr"/>
-                <constraint firstItem="OfD-TA-GUS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uGC-8D-Kql"/>
-                <constraint firstItem="OfD-TA-GUS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vbz-dM-Y4S"/>
+                <constraint firstItem="0iu-ki-IgB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tv7-vf-pRu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q57-w5-DJR" secondAttribute="trailing" constant="32" id="y4b-I7-vhy"/>
             </constraints>
             <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>

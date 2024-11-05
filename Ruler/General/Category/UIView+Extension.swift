@@ -2,7 +2,7 @@
 //  UIView+Constraint.swift
 //  Ruler
 //
-//  Created by Tbxark on 18/09/2017.
+//  Created by Moon Dev on 18/09/2017.
 //  Copyright © 2017 Tbxark. All rights reserved.
 //
 
